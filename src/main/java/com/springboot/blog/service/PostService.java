@@ -9,5 +9,5 @@ public interface PostService {
 
     List<PostDto> getAllPost();
 
-
+    PostDto getPostById(long id);
 }
