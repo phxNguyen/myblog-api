@@ -34,4 +34,14 @@ public class CommentController {
         //int count = commentService.getCommentsByPostId(postId).stream().count()
        //return counter;
     }
+
+
+    @GetMapping("/posts/{postId}/comments/{id}")
+    public ResponseEntity<CommentDto> getCommentById(@PathVariable(value = "postId") Long postId, @PathVariable (value="id") Long commentId){
+
+        CommentDto commentDto = commentService.getCommentById(postId, commentId);
+        return new ResponseEntity<>(commentDto, HttpStatus.OK);
+
+    
+    }
 }
