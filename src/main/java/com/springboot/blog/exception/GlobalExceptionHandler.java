@@ -43,8 +43,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    // method lay trong docs ResponseEntityExceptionHandler
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+    // Cach 1: method lay trong docs ResponseEntityExceptionHandler
+    public ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
 
@@ -63,4 +63,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return  new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         //return handleExceptionInternal(ex, null, headers, status, request);
     }
+
+    // Cach 2: giong  custom exception ben tren
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, WebRequest webRequest){
+//
+//        Map<String, String> errors = new HashMap<>();
+//        exception.getBindingResult().getAllErrors().forEach((error)->{
+//            String fieldName =((FieldError)error).getField();
+//            String validationMessage = error.getDefaultMessage();
+//            errors.put(fieldName,validationMessage);
+//        });
+//
+//        return  new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+//    }
 }
